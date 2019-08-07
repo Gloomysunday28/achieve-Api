@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>hooks</title>
+</head>
+<body>
+  <div class="c-hooks">
+    1
+  </div>
+  <script>
+    const oDiv = document.getElementsByTagName('div')[0]
+
+    const Hooks = function() {
+      const useState = (function() {
+        return function(init) {
+          let variable = init
+          const setCount = function(newValue) {
+            return variable = newValue
+          }
+          
+          return [variable, setCount]
+        }
+      })()
+      
+      return {
+        useState
+      }
+    }
+
+    const {
+      useState
+    } = Hooks()
+
+
+    function renderApp() {
+      const [count, setCount] = useState(0)
+
+      oDiv.onclick = setCount(count + 1)
+      oDiv.innerHTML = count
+    }
+
+    renderApp()
+  </script>
+</body>
+</html>

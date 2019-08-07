@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div::after {
+      content: '';
+      animation: dot 2s linear infinite;
+    }
+    div::before {
+      content: attr(data-href);
+    }
+    
+    @keyframes dot {
+      0% {
+        content: ''
+      }
+      33% {
+        content: '.'
+      }
+      66% {
+        content: '..'
+      }
+      100% {
+        content: '...'
+      }
+    }
+    h1::before{
+     content:counter(cj)'.';
+    }
+    h1{
+      counter-increment:cj;
+      counter-reset:h2;
+    }
+    h2::before{
+      content:counter(cj) '-' counter(h2);
+    }
+    h2{
+        counter-increment:h2;
+        counter-reset:h3;
+        margin-left:40px;
+    }
+    h3::before{
+      content:counter(cj) '-' counter(h2) '-' counter(h3);
+    }
+    h3{
+        counter-increment:h3;
+        margin-left:80px;
+    }
+  </style>
+</head>
+<body>
+  <div data-href="http://111.231.55.237" accesskey="h" onclick="this.style.color = 'red'"></div>
+  <h1 class="c-j">
+    大标题
+  </h1>
+  <h2>中标题</h2>
+  <h3>小标题</h3>
+  <h3>小标题</h3>
+  <h3>小标题</h3>
+  <h1 class="c-j">
+    大标题
+  </h1>
+  <h2>中标题</h2>
+  <h3>小标题</h3>
+  <h3>小标题</h3>
+  <h3>小标题</h3>
+</body>
+</html>

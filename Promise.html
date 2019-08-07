@@ -8,60 +8,64 @@
 </head>
 <body>
   <script>
-    const myPromise = function(constructor) {
-      this.status = undefined // 状态
-      this.value = '' // 完成的
-      this.reason = ''
-      const resolve = (key) => {
-        if (!this.status) {
-          this.status = 'resolve'
-          this.value = key
-          return key
-        }
-      }
+    // const myPromise = function(constructor) {
+    //   this.status = undefined // 状态
+    //   this.value = '' // 完成的
+    //   this.reason = ''
+    //   const resolve = (key) => {
+    //     if (!this.status) {
+    //       this.status = 'resolve'
+    //       this.value = key
+    //       return key
+    //     }
+    //   }
 
-      const reject = (key) => {
-        if (!this.status) {
-          this.status = 'reject'
-          this.reason = key
-          return key
-        }
-      }
+    //   const reject = (key) => {
+    //     if (!this.status) {
+    //       this.status = 'reject'
+    //       this.reason = key
+    //       return key
+    //     }
+    //   }
 
-      try {
-        constructor(resolve, reject) // new的时候调用将改变状态的函数resolve 和 reject传递给初始化的函数里
-      } catch(e) {
-        console.log(e)
-      }
-    }
+    //   try {
+    //     constructor(resolve, reject) // new的时候调用将改变状态的函数resolve 和 reject传递给初始化的函数里
+    //   } catch(e) {
+    //     console.log(e)
+    //   }
+    // }
 
-    myPromise.prototype.then = function(fullComplete, rejectComplete) {
-      if (this.status === 'resolve') this.value = fullComplete(this.value) // 将值传递给下一个then方法
-      else this.reason = rejectComplete(this.reason) // 将值传递给下一个then方法
-      return this
-    }
+    // myPromise.prototype.then = function(fullComplete, rejectComplete) {
+    //   if (this.status === 'resolve') this.value = fullComplete(this.value) // 将值传递给下一个then方法
+    //   else this.reason = rejectComplete(this.reason) // 将值传递给下一个then方法
+    //   return this
+    // }
 
-    new myPromise((resolve, reject) => {
-      resolve(1)
-      reject(2)
-    }).then(res => {
-      console.log(res)
-      return 43
-    }, res => {
-      console.log(res)
-    }).then(res => {
-      console.log(res)
-    })
-
-
-    // new Promise((resolve, reject) => {
-    //   reject(1)
+    // new myPromise((resolve, reject) => {
     //   resolve(1)
+    //   reject(2)
     // }).then(res => {
     //   console.log(res)
+    //   return 43
     // }, res => {
     //   console.log(res)
+    // }).then(res => {
+    //   console.log(res)
     // })
+
+    const myPromise = function() {
+      const resolve = function() {
+
+      }
+      const reject = function() {
+
+      }
+      try {
+
+      } catch(e) {
+        console.error(e)
+      }
+    }
   </script>
 </body>
 </html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>浏览器切片</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    div {
+      height: 25%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="div1"></div>
+  <div class="div2"></div>
+  <div class="div3"></div>
+  <div class="div4"></div>
+  
+  <script>
+    var requestAnimation = window.requestAnimationFrame ? window.requestAnimationFrame.bind(window) : setTimeout;
+    const oDiv = Array.from(document.getElementsByTagName('div'))
+
+    function init({
+      sliceList,
+      callback
+    } = {}) {
+      if (typeof callback !== 'function') {
+        return
+      }
+
+      this.generator = this.sliceQueue({
+        sliceList,
+        callback
+      })
+
+      this.next()
+    }
+
+    function* sliceQueue({ // 渲染页面
+      sliceList,
+      callback
+    } = {}) {
+      let queueLength = sliceList
+
+      for (let i = 0; i < queueLength; i++) {
+        const start = performance.now();
+        callback(i);
+        // 如果执行需要的时间少于 16.7ms，就停止继续执行下去
+        // 如果大于的话，就在下一次绘制的时候去执行
+        while (performance.now() - start < 16.7) {
+          yield;
+        }
+      }
+    }
+
+    function next() {
+      const {
+        generator
+      } = this
+      const start = performance.now()
+
+      let res = null
+      while (!res.done && performance.now() - start < 16.7) {
+        res = generator.next()
+      }
+
+      if (res.done) return void cancelAnimationFrame(this.next)
+
+      return requestAnimation(this.next.bind(this))
+    }
+
+    init.prototype = {
+      constructor: init,
+      next,
+      sliceQueue
+    }
+
+    function render(i) {
+      if (oDiv[i]) {
+        for (let j = 0; j < 10; j++) {
+          oDiv[i].innerHTML += j + 123
+        }
+      }
+    }
+
+    new init({
+      sliceList: 5,
+      callback: render
+    })
+  </script>
+</body>
+
+</html>
