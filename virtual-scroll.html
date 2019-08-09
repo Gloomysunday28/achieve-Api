@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>虚拟滚动</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      position: relative;
+      height: 80vh;
+      overflow-y: auto;
+    }
+
+    .box {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    .footer {
+      opacity: 0;
+    }
+    .child {
+      height: 30px;
+      background: yellowgreen;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+    </div>
+  </div>
+  <script>
+    const container = document.getElementsByTagName('div')[0]
+    const box = document.getElementsByTagName('div')[1]
+    const clientHeight = box.clientHeight
+    const list = [...Array(100).keys()].map(v => '<div class="child">' + v + '</div>')
+    const child = document.getElementsByClassName('child')[0]
+    const itemHeight = 30
+    const reserveBottom = 3 // 底部预留个数
+    const reserveTop = 3 // 顶部预留个数
+    const visiableCount = Math.ceil(clientHeight / itemHeight)
+    box.style.height = (list.length - 1) * itemHeight + 'px'
+    let start = 0
+    let oldStart = 1
+    let end = start + visiableCount
+    let bottomHeight = 0
+    let data = []
+
+    const refreshData = () => {
+      const topHeight = container.scrollTop > reserveTop * itemHeight ? container.scrollTop - reserveTop * itemHeight : container.scrollTop
+      start = Math.floor(topHeight / itemHeight)
+      if (start !== oldStart) {
+        oldStart = start
+        end = start + visiableCount + reserveBottom + 1
+        bottomHeight = (list.length - end - 1) * itemHeight - topHeight
+        data = list.slice(start, end)
+        box.innerHTML = `<div style="height:${topHeight}px"></div>` + data.join('') +
+            `<div style="height:${bottomHeight}px"></div>`
+      }
+      if (start === 0){
+        box.innerHTML = `<div style="height:${topHeight}px"></div>` + data.join('') +
+            `<div style="height:${bottomHeight}px"></div>`
+      }
+    }
+
+    refreshData()
+    container.onscroll = refreshData
+  </script>
+</body>
+
+</html>
