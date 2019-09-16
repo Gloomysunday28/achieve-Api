@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" list="names" multiple />
+  <datalist id="names">
+      <option value="kris">
+      <option value="陈大鱼头">
+      <option value="深圳金城武">
+  </datalist>
+  <input type="text" onchange="change()">
+  <script>
+    function change() {
+      console.log(123);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: relative;
+      z-index: 10;
+      height: 88px;
+      flex: none;
+      background: blue;
+    }
+
+    .img {
+      padding-top: 75%;
+      height: 0;
+      flex: none;
+      background: url(./img/1.jpg) no-repeat;
+      background-size: 100% 100%;
+    }
+
+    #list {
+      height: 100%;
+    }
+
+    .c-item {
+      height: 30px;
+      border-bottom: 2px solid #000;
+    }
+    .mask {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background: yellow;
+    }
+    .list-container {
+      width: 100%;
+      position: absolute;
+      top: 288px;
+      bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header"></header>
+    <div class="img">
+    </div>
+    <div class="mask" style="top: 288px;"></div>
+    <div class="list-container">
+      <div id="list">
+        <div class="list">
+          <div class="c-item">1</div>
+          <div class="c-item">2</div>
+          <div class="c-item">3</div>
+          <div class="c-item">4</div>
+          <div class="c-item">5</div>
+          <div class="c-item">6</div>
+          <div class="c-item">7</div>
+          <div class="c-item">8</div>
+          <div class="c-item">9</div>
+          <div class="c-item">11</div>
+          <div class="c-item">12</div>
+          <div class="c-item">13</div>
+          <div class="c-item">14</div>
+          <div class="c-item">15</div>
+          <div class="c-item">16</div>
+          <div class="c-item">17</div>
+          <div class="c-item">18</div>
+          <div class="c-item">91</div>
+          <div class="c-item">23</div>
+          <div class="c-item">243</div>
+          <div class="c-item">26</div>
+          <div class="c-item">27</div>
+          <div class="c-item">28</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+          <div class="c-item">29</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/better-scroll@1.15.2/dist/bscroll.min.js"></script>
+  <script>
+    const img = document.getElementsByClassName('img')[0]
+    const header = document.getElementsByClassName('header')[0]
+    const list = document.getElementById('list')
+    const lists = list.getElementsByClassName('list')[0]
+    const mask = document.getElementsByClassName('mask')[0]
+    const height = img.offsetHeight
+    let bs = new BScroll('#list', {
+      // ...... 详见配置项
+      probeType: 3,
+      bounce:{
+        top: true,
+        bottom: true
+      }
+    })
+
+    function Scroll(e) {
+      const { y } = e
+      console.log(y)
+      console.log('h', height)
+      if (y > 0) { // 向下滑
+        console.log(y)
+        const scale = 1 + Math.abs(y / (height + 5))
+        img.style.transform = 'scale('+ scale +')'
+      } else if (y < 0 && y > -height + 88) { // 划过图片但是还没到header
+
+      } else {
+        // mask.style.top = 88 + 'px'
+      }
+      mask.style.top = 288 + y + 'px'
+      console.log(bs.isInTransition)
+    }
+
+    bs.on('scroll', Scroll)
+    
+    bs.on('refresh', (e) => {
+      console.log(e)
+    })
+  </script>
+</body>
+
+</html>

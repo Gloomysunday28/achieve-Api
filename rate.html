@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="http://at.alicdn.com/t/font_1356455_c5d3d3ohlbq.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    input {
+      font-family: "iconfont" !important;
+      -webkit-appearance: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+    .c-starts {
+      width: 200px;
+      margin: 50px auto;
+      display: flex;
+      flex-flow: row-reverse;
+    }
+    .c-start {
+      font-size: 30px;
+      padding-right: 10px;
+      cursor: pointer;
+    }
+    .c-start:hover {
+      transform: scale(1.2);
+      transform-origin: bottom bottom;
+      transition: transform .5s;
+    }
+    .c-start::after {
+      content: '\e645';
+    }
+    .c-start:checked::after, .c-start:hover::after {
+      content: '\e73c';
+      color: #ffa822;
+      transition: color .5s;
+    }
+    .c-start:checked~.c-start::after {
+      content: '\e73c';
+      color: #ffa822;
+      transition: color .5s;
+    }
+    .c-start:hover~.c-start::after{
+      content: '\e73c';
+      color: #ffa822;
+      transition: color .5s;
+    }
+  </style>
+</head>
+<body>
+  <div class="c-starts">
+    <input type="radio" name="rate" class="iconfont c-start"/>
+    <input type="radio" name="rate" class="iconfont c-start"/>
+    <input type="radio" name="rate" class="iconfont c-start"/>
+    <input type="radio" name="rate" class="iconfont c-start"/>
+    <input type="radio" name="rate" class="iconfont c-start"/>
+  </div>
+</body>
+</html>

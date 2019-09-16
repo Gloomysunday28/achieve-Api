@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    video {
+      width: 300px;
+      height: 300px;
+    }
+    img {
+      width: 300px;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <video src="./vido/111.mp4"></video>
+  <canvas></canvas>
+  <img src="" alt="">
+  <script>
+    const video = document.getElementsByTagName('video')[0]
+    const canvas = document.getElementsByTagName('canvas')[0]
+    const ctx = canvas.getContext('2d')
+    const img = document.getElementsByTagName('img')[0]
+    video.addEventListener('loadeddata', function (e) {
+      canvas.width = 300
+      canvas.height = 300
+      var width = 300
+      var height = 300
+      ctx.drawImage(this, 0, 0, width, height);
+      var src = canvas.toDataURL('image/jpeg');
+      img.src = src;
+      // var currentTime = this.currentTime
+      // duration = this.duration
+      // var fps = duration / 30
+      
+    })
+  </script>
+</body>
+</html>

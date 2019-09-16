@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style type="text/css">
+#div1 {width:198px; height:196px;padding:10px;border:1px solid #aaaaaa;}
+div {
+  transition: all .5s;
+}
+</style>
+<script type="text/javascript">
+function allowDrop(ev)
+{
+  console.log('t', ev.target);
+  ev.preventDefault();
+  var data=ev.dataTransfer.getData("Text");
+  // ev.target.appendChild(document.getElementById(data));
+  console.log(ev.currentTarget);
+  const index = Array.prototype.indexOf.call(ev.currentTarget.children, ev.target)
+  console.log(index);
+  console.log(data);
+  ev.currentTarget.insertBefore(document.getElementById('drag1'), ev.target)
+}
+
+function drag(ev)
+{
+ev.dataTransfer.setData("Text",ev.target.id);
+}
+
+function drop(ev)
+{
+  ev.preventDefault();
+  var data=ev.dataTransfer.getData("Text");
+  console.log('1', data);
+  // ev.target.appendChild(document.getElementById(data));
+  const index = Array.prototype.indexOf.call(ev.currentTarget.children, ev.target)
+  ev.currentTarget.insertBefore(document.getElementById(data), ev.target)
+}
+</script>
+</head>
+<body>
+
+<p>请把 W3School 的图片拖放到矩形中：</p>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <div class='321'>1</div>
+  <div>1</div>
+  <div>1</div>
+<br />
+</div>
+<img id="drag1" src="https://www.w3school.com.cn/i/eg_dragdrop_w3school.gif" draggable="true" ondragstart="drag(event)" />
+
+</body>
+</html>
