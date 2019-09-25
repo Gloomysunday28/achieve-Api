@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .c-transition__container {
+        width: 100px;
+        height: 100px;
+        background: red;
+        transition-duration: .5s;
+        transition-property: transform;
+    }
+
+  </style>
+</head>
+<body>
+    <div class="c-transition__container" style="display: none;"></div>
+  <script>
+    const oDiv = document.getElementsByClassName('c-transition__container')[0]
+      document.onclick = function() {
+          oDiv.style.display = 'block'
+          const q = () => {
+            oDiv.style.transform = 'translate3d(100px, 0, 0)'
+          }
+          window.requestAnimationFrame(q)
+      }
+  </script>
+</body>
+</html>
