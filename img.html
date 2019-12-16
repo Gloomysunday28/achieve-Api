@@ -31,15 +31,29 @@
 </head>
 <body>
   <div></div>
+  <button onclick="onloads()">onload</button>
+  <button onclick="decodes()">decode解码</button>
   <script>
-    const image = new Image()
-    image.src = 'img/nebula.jpg'
-    image.onload = () => {
-      document.body.append(image)
+    function removes() {
+      const img = document.getElementsByTagName('img')[0]
+      if (img) {
+        document.body.removeChild(img)
+      }
     }
-    image.decode().then(() => {
-        document.body.append(image)
+    function onloads() {
+      const image = new Image()
+      image.src = 'img/nebula.jpg'
+      removes()
+      document.body.appendChild(image)
+    }
+    function decodes() {
+      const image = new Image()
+      image.src = 'img/nebula.jpg'
+      removes()
+      image.decode().then(() => {
+        document.body.appendChild(image)
       })
+    }
   </script>
 </body>
 </html>
