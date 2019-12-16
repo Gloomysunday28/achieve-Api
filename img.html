@@ -50,9 +50,11 @@
       const image = new Image()
       image.src = 'img/nebula.jpg'
       removes()
-      image.decode().then(() => {
-        document.body.appendChild(image)
-      })
+      image.onload = () => {
+        image.decode().then(() => {
+          document.body.appendChild(image)
+        })
+      }
     }
   </script>
 </body>
