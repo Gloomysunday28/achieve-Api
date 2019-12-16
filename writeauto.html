@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .container::after {
+      content: '|';
+      animation: opacitys 1s infinite;
+    }
+    @keyframes opacitys {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container"></div>
+  <script>
+    const container = document.getElementsByClassName('container')[0]
+    const content = '飞翔在自由的天空中，遨游在广阔的海洋里，游荡在清静的山林间，漫步在喧嚣的城市内。'
+    let index = 0
+    let timer = setInterval(() => {
+      container.innerHTML += content[index]
+      index++
+      if (index >= content.length) {
+        clearInterval(timer)
+        timer = null
+        container.classList.remove('container')
+      } 
+    }, 200)
+  </script>
+</body>
+</html>

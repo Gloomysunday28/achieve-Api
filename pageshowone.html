@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="blank-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <a href="./pageshowtwo.html">pageshowTwo</a>
+  <script>
+    var a = 1
+
+    window.onbeforeunload = () => {
+      　var e = window.event||e;  
+　　    e.returnValue=("确定离开当前页面吗？");
+    }
+  </script>
+</body>
+</html>

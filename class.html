@@ -24,5 +24,17 @@
 
     new Child()
   </script>
+  <script>
+      let a = 1
+     window.addEventListener('pagehide', (e) => {
+       console.log('e', e)
+       if (e.persisted) {
+         window.location.reload()
+       } else{
+         console.log(a)
+         a++
+       }
+     })
+   </script>
 </body>
 </html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        dialog {
+            border-color: red;
+        }
+
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body style="height:  1000px;">
+    <button id="btn">TEST</button>
+    <dialog id="dialog">12
+        <button id="close">close</button>
+    </dialog>
+    <script>
+        var dialogEl = document.querySelector('#dialog');
+        var btnEl = document.querySelector('#btn');
+        var closeEl = document.querySelector('#close');
+
+        btnEl.addEventListener('click', e => {
+            // dialogEl.show(); // 打开dialog
+            dialogEl.showModal(); // 打开dialog，有蒙版
+        });
+
+        closeEl.addEventListener('click', e => {
+            dialogEl.close('testValue');
+            console.log(dialogEl.returnValue) // 'testValue'
+        });
+
+        dialogEl.addEventListener('close', e => {
+            console.log('close event')
+        });
+
+        dialogEl.addEventListener('cancel', e => {
+            // 按下ESC同时也会触发close事件
+            console.log('enter ESC key event')
+            // 以下可选代码
+            dialogEl.close('testValue2'); // 
+            console.log(e.target.returnValue); // 'testValue2'
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 100px;
+      margin: 50px auto;
+    }
+    .clock {
+      width:100px;
+      height: 100px;
+      background: black;
+      text-align: center;
+      font-size: 100px;
+      color: #fff;
+    }
+    .clock.top {
+      border-radius: 10px 10px 0 0;
+      border-bottom: 1px solid #ccc;
+      line-height: 200px;
+    }
+    .clock.bottom {
+      border-radius: 0 0 10px 10px;
+      line-height: 0;
+    }
+  </style>
+</head>
+<body>
+  <div spellcheck="spellcheck">啥</div>
+  <div class="container">
+    <div class="clock top">1</div>
+    <div class="clock bottom">1</div>
+    <a href="./class.html">class</a>
+  </div>
+  <script>
+    let a = 1
+    window.addEventListener('pageshow', (e) => {
+      console.log('e', e)
+      if (e.persisted) {
+        window.location.reload()
+      } else{
+        console.log(a)
+        a++
+      }
+    })
+
+    window.addEventListener('pagehide', (e) => {
+       console.log('hide', e)
+     })
+  </script>
+</body>
+</html>

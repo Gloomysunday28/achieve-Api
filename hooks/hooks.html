@@ -18,6 +18,7 @@
         return function(init) {
           let variable = init
           const setCount = function(newValue) {
+            oDiv.innerHTML = newValue
             return variable = newValue
           }
           
@@ -37,8 +38,7 @@
 
     function renderApp() {
       const [count, setCount] = useState(0)
-
-      oDiv.onclick = setCount(count + 1)
+      oDiv.onclick = () => {setCount(count + 1)}
       oDiv.innerHTML = count
     }
 

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+      const proxy = new Proxy(function(a) {
+        console.log(a)
+      }, {
+        get() {
+          console.log('getting value');
+          return Reflect.get.call(Reflect, ...arguments)
+        },
+        set() {
+          console.log('setting value');
+          return Reflect.set.call(Reflect, ...arguments)
+        },
+        has(target, propKey) {
+          console.log(target);
+          console.log(propKey);
+          return Reflect.has.call(Reflect, ...arguments)
+        },
+        deleteProperty(target, propKey) {
+          console.log(target);
+          console.log(propKey);
+          return Reflect.deleteProperty.call(Reflect, ...arguments)
+        },
+        ownKeys(target) {
+          return Reflect.ownKeys.call(Reflect, ...arguments)
+        },
+        apply(target, ctx, args) {
+          console.log(target);
+          console.log(ctx);
+          console.log(args);
+          return Reflect.apply(...arguments)
+        }
+      })
+      // proxy.time = 1
+      // console.log(proxy.timine)
+
+      // const obj = Object.create(proxy)
+
+      // obj.time = 1
+      // console.log(obj.time);
+
+      // console.log('time' in proxy)
+      // delete proxy.time
+
+      // for (let i in proxy) {
+      //   console.log(2, i);
+      //   console.log(1, proxy[i]);
+      // }
+
+      proxy(321)
+
+    // const dom = new Proxy({}, {
+    //   get(target, propKey) {
+    //     return function(attr = {}, ...children) {
+    //       const el = document.createElement(propKey)
+    //       for (let prop in attr) {
+    //         el.setAttribute(prop, attr[prop])
+    //       }
+
+    //       for (let child of children) {
+    //         if (typeof child === 'string') {
+    //           child = document.createTextNode(child)
+    //         }
+    //         el.appendChild(child)
+    //       }
+
+    //       document.body.appendChild(el)
+    //       return dom
+    //     }
+    //   }
+    // })
+
+    // dom.a({
+    //   href: 'http://111.231.55.237:3000',
+    //   target: '__blank',
+    // }, 'Martin Chat').div({
+    //   accessKey: 'h'
+    // }, '我是div').p({style: 'margin: 0; padding: 0'}, '啦啦啦')
+  </script>
+</body>
+</html>
