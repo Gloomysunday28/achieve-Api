@@ -41,20 +41,7 @@
     <a href="./class.html">class</a>
   </div>
   <script>
-    let a = 1
-    window.addEventListener('pageshow', (e) => {
-      console.log('e', e)
-      if (e.persisted) {
-        window.location.reload()
-      } else{
-        console.log(a)
-        a++
-      }
-    })
-
-    window.addEventListener('pagehide', (e) => {
-       console.log('hide', e)
-     })
+    window.opener.postMessage(555, window.location.href)
   </script>
 </body>
 </html>

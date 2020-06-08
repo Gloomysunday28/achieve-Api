@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function sub_curry(fn, ...rest) {
+      return function(...arg) {
+        const params = rest.concat(arg)
+        const result = fn && fn.apply(null, params)
+        return result
+      }
+    }
+
+    function curry(fn, len) {
+      const length = len || fn.length
+      return function() {
+        if (arguments.length < length) {
+          return curry(sub_curry.apply(this, [fn].concat(Array.from(arguments))), length - arguments.length)
+        } else {
+          return fn.apply(this, arguments)
+        }
+      }
+    }
+
+    function fnc(a, b, c) {
+      console.log(a)
+      console.log(b)
+      console.log(c)
+      return a + b + c
+    }
+
+    const a = curry(fnc)
+    // a(1)(2)
+    console.log('martin', a(1)(2)(3))
+  </script>
+</body>
+</html>

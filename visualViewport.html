@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html,body {
+      height:100vh;
+    }
+    div {
+      position: absolute;
+      left:0;
+      bottom: 0;
+      height: 100px;
+      width: 100%;
+      background: red;
+      transition: all .5s;
+    }
+  </style>
+</head>
+<body>
+  <input type="text">
+  <div></div>
+  <script src="https://cdn.jsdelivr.net/npm/eruda@1.5.4/eruda.min.js"></script>
+<script>
+eruda.init()
+</script>
+  <script>
+    console.log('martin', window.visualViewport.height)
+    const div = document.getElementsByTagName('div')[0]
+    const height = window.visualViewport.height
+    window.visualViewport.addEventListener('resize', function(event) {
+      console.log('martin', window.visualViewport.height - height)
+      div.style.bottom = -window.visualViewport.height + height + 'px'
+    })
+  </script>
+</body>
+</html>

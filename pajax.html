@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">pJax</div>
+  <button onclick="jumpTo()">click</button>
+  <script>
+    const oContainer = document.querySelector('.container')
+    function jumpTo(){
+      window.history.pushState({state: 1}, 'title1', '/clock.html')
+      fetch('/clock.html', {
+        headers: {
+          "X_PJAX": true
+        }
+      }).then(res => {
+        console.log(res)
+        return res.text()
+      }).then(res => {
+        console.log('martin', res)
+        oContainer.innerHTML = res
+        console.log('martin', martin)
+      })
+    }
+    window.addEventListener('popstate', (e) => {
+      console.log(e)
+      // const xhr = new XMLHttpRequest()
+      // xhr.open('get', '/clock.html')
+
+      // xhr.upload.addEventListener('progress', (e) => {
+      //   console.log(e)
+      // }, false)
+      // xhr.onreadystatechange = function(rs) {
+      //   if (rs.readyStatus === 4) {
+      //     document.write(rs.responseText)
+      //   }
+      // }
+      // xhr.send()
+      // fetch('/clock.html', {
+      //   headers: {
+      //     "X_PJAX": true
+      //   }
+      // }).then(res => {
+      //   console.log(res)
+      //   return res.text()
+      // }).then(res => {
+      //   console.log('martin', res)
+      //   document.write(res)
+      //   console.log('martin', martin)
+      // })
+      oContainer.innerHTML += 1
+    })
+  </script>
+</body>
+</html>

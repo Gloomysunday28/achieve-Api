@@ -1,0 +1,1 @@
+console.log('web-worker加载的外部js文件')

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Person(name) {
+      this.name = name
+    }  
+
+    function Children(name) {
+      Person.call(this, name)
+    }
+
+    Person.prototype.say = () => {
+      console.log(this.name)
+    }
+
+    Object.setPrototypeOf(Children.prototype, Person.prototype)
+
+    console.log(new Children('martin'))
+    Children.prototype.say = () => {
+      console.log('mar')
+    }
+    console.log(Children.prototype === Person.prototype)
+    console.log('martin', Person.prototype)
+  </script>
+</body>
+</html>

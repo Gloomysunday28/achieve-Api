@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    div {
+      background: red;
+      width: 100px;
+    }
+    div::after {
+      display: block;
+      content: '31321';
+      clear: both;
+    }
+    section {
+      width: 20px;
+      background: yellow;
+      height: 100px;
+      float: left;
+    }
+    .class2 {
+      background: blue;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <section class="class1"></section>
+    <section class="class2"></section>
+  </div>
+</body>
+</html>

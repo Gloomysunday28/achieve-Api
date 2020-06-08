@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .c-dot {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      background: #89cff0;
+      margin: 50px auto;
+    }
+    .c-dot::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      background: #89cff0;
+      animation: scales 2.5s infinite;
+    }
+
+    @keyframes scales {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(2.5);
+        opacity: 0;
+      }
+    }
+
+    .c-radio {
+      -webkit-appearance: none;
+      width: 30px;
+      height: 30px;
+      background: orange;
+      border-radius: 100%;
+      background-clip: content-box;
+      padding: 2px;
+      border: 1px solid orange;
+      color: orange;
+      outline: none;
+      cursor: pointer;
+      transition: all .5s;
+    }
+    .c-radio:checked, .c-radio:hover {
+      box-shadow: 0 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="c-dot">
+
+  </div>
+  <input type="radio" class="c-radio"/>
+</body>
+</html>

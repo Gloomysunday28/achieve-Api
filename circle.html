@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    circle {
+      stroke-width: 8px;
+      transform-origin: center center;
+    }
+    .progress-background {
+      transform: scale(0.9);
+    }
+    circle.progress-bar {
+      transform: scale(0.9) rotate(-90deg);
+      stroke: rgb(212, 68, 57);
+    }
+  </style>
+</head>
+<body>
+  <svg width="32" height="32" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <circle class="progress-background" r="30" cx="50" cy="50" fill="rgba(212, 68, 57, 0.5)"></circle>
+    <circle class="progress-bar" r="30" cx="50" cy="50" fill="transparent" stroke-dasharray="188.4955592" stroke-dashoffset="120"></circle>
+  </svg>
+  <script>
+    // const circle = document.getElementsByTagName('circle')[1]
+    // let root = 188.4955592
+    // function fills() {
+    //   if (root <= 0) cancelAnimationFrame(fills)
+    //   const speed = Math.ceil(root / 30)
+    //   root -= speed
+    //   circle.setAttribute('stroke-dashoffset', root)
+
+    //   requestAnimationFrame(fills)
+    // }
+    // requestAnimationFrame(fills)
+  </script>
+</body>
+</html>
