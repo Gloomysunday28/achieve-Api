@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .block {
+      height: 200px;
+      border-radius: 8px;
+      flex: 0 0 25%;
+      width: 100px;
+      margin-right: 20px;
+      margin-bottom: 10px;
+      transition: all .3s;
+    }
+    .contaniner {
+      display: flex;
+      flex-wrap: wrap;
+      width: 500px;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="add()">添加</button>
+  <button onclick="blockSort()">乱序</button>
+  <div class="contaniner">
+
+  </div>
+  <!-- <script src="https://rawgit.com/web-animations/web-animations-js/master/web-animations.min.js"></script> -->
+  <script src="./webAnimation.js"></script>
+  <script>
+    const bgMap = ['red', 'black', 'blue', 'green', 'yellow', 'pink', 'purple', 'gray', 'aqua', 'orange', 'brown']
+    const container = document.getElementsByClassName('contaniner')[0]
+    function generateDom() {
+      const num = Math.ceil(Math.random() * 3)
+      const pendingData = [...new Array(num)].map((v, index) => {
+        const oDiv = document.createElement('div')
+        oDiv.className = 'block'
+        oDiv.style.background = bgMap[(index + 6) % 11]
+        return oDiv
+      })
+
+      return pendingData
+    }
+    let nowData = [...new Array(6)].map((v, index) => {
+      const oDiv = document.createElement('div')
+      oDiv.className = 'block'
+      oDiv.style.background = bgMap[index % 11]
+      return oDiv
+    })
+    let nowDatas = nowData
+    
+    Array.from(nowData).forEach(v => container.appendChild(v))
+
+    function blockSort() {
+      nowDatas.sort((prev, next) => {
+          return Math.random() > .5 ? -1 : 1
+      })
+      const prevPosition = getPosition(nowDatas)
+      appendDom(prevPosition)
+    }
+
+    function add() {
+      nowData = nowDatas.slice()
+      const prevPosition = getPosition(nowData)
+      const pendingData = generateDom()
+      nowDatas = pendingData.concat(nowData)
+      appendDom(prevPosition, pendingData)
+    }
+    function appendDom(prevPosition, pendingData = []) {
+      Promise.resolve().then(() => {
+        Array.from(nowDatas).forEach(v => container.appendChild(v))
+      })
+      Promise.resolve().then(() => {
+        const nowPosition = getPosition(nowData)
+        nowData.forEach((v, index) => {
+          const currentPosition = nowPosition[index]
+          const pPosition = prevPosition[index]
+          
+          const keyframes = [
+            {
+              transform: `translate3d(${pPosition.left - currentPosition.left}px, ${pPosition.top - currentPosition.top}px, 0)`
+            },
+            { transform: "translate3d(0, 0, 0)" },
+          ]
+
+          const options = {
+            duration: 300,
+            easing: "cubic-bezier(0,0,0.32,1)",
+          }
+
+          const transform = `translate3d(${pPosition.left - currentPosition.left}px, ${pPosition.top - currentPosition.top}px, 0)`
+          v.style.transform = transform
+          v.style.transitionDuration = '0s'
+          window.requestAnimationFrame(() => {
+            v.style.transform = 'translate3d(0, 0, 0)'
+            v.style.transitionDuration = '.3s'
+          })
+        })
+        pendingData.forEach(v => {
+          const transform = `translate3d(0, -50px, 0)`
+          v.style.transform = transform
+          v.style.opacity = 0
+          v.style.transitionDuration = '0s'
+          window.requestAnimationFrame(function() {
+            v.style.transform = 'translate3d(0, 0, 0)'
+            v.style.opacity = 1
+            v.style.transitionDuration = '.3s'
+          })
+        })
+      })
+    }
+    function getPosition(nowData) {
+      const position = nowData.map(v => {
+        const { left, top } = v.getBoundingClientRect()
+        return {
+          left,
+          top
+        }
+      })
+      
+      return position
+    }
+  </script>
+</body>
+</html>

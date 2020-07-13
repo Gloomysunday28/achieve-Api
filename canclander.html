@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+  <script>
+    const tbody = document.getElementsByTagName('tbody')[0]
+    const now = new Date()
+    const firstDay = now.getDay()
+    const lastDat = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate()
+    const prevDat = new Date(now.getFullYear(), now.getMonth(), 0).getDate()
+    const length = Math.ceil(lastDat / 7) * 7
+    var i = 0
+    while(i < length) {
+      if (i % 7 === 0) {
+        tbody.innerHTML += `<tr><td>`
+      } else {
+        tbody.innerHTML += `<td>`
+      }
+      i++
+      if (i < firstDay) {
+        tbody.innerHTML += `${prevDat - firstDay + i + 1}</td>${(i + 1 ) % 7 === 0 ? '</tr>' : ''}`
+      } else if (i >= firstDay && i < lastDat + firstDay - 1) {
+        tbody.innerHTML += `${i - firstDay + 1}</td>${(i + 1 ) % 7 === 0 ? '</tr>' : ''}`
+      } else {
+        tbody.innerHTML += `${i - lastDat - firstDay + 2}</td>${(i + 1 ) % 7 === 0 ? '</tr>' : ''}`
+      }
+    }
+  </script>
+  <script>
+    requestAnimationFrame(() => {
+      console.log('martin', 13)
+    setTimeout(() => {
+      console.log('martin', 'timeout')
+    }, 0)
+    })
+    requestAnimationFrame(() => {
+    })
+  </script>
+</body>
+</html>

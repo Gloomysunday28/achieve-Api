@@ -7,7 +7,17 @@
   <title>Document</title>
 </head>
 <body>
-  <!-- <a href="postman://HKEY_CLASSES_ROOT\postman">postman</a> -->
+  <script>
+    function downloadURL(url, name) {
+      const link = document.createElement('a')
+      link.download = '1.mp3'
+      link.href = 'https://pro-ccrecords.kefutoutiao.com/linapp/cc_recordings/20200707162743_3189315b-1a9a-4b5b-bcdc-642f90c2ad62_e49a47e4-b0c8-4059-a9c5-50e4bc4817e9.mp3?OSSAccessKeyId=bPexlr6MCcadDhfu&Expires=1625646536&Signature=l%2FjpCNQiTmGFt%2BDBC7BlpvO7vnk%3D'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    }
+    downloadURL()
+  </script>
   <script src="//localhost:8001/main.js"></script>
   <script src="//localhost:8001/index.js" crossorigin="anonymous"></script>
 </body>

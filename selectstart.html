@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div::selection {
+      background: yellow;
+    }
+    p:target {
+      color: red;
+    }
+    body:focus-within {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" onselect="alert('111')">
+  <div>32151251</div>
+  <a href="#p2">aaaa</a>
+  <a href="#p3">aaaa</a>
+  <p id="p2">531251</p>
+  <p id="p3">531251</p>
+  <button>5555</button>
+</body>
+</html>
