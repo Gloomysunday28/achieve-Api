@@ -40,6 +40,13 @@
         document.body.removeChild(img)
       }
     }
+     let decodeImage = Promise.resolve()
+     const image = new Image()
+      image.src = 'img/nebula.jpg'
+      removes()
+      image.onload = () => {
+        decodeImage = image.decode()
+      }
     function onloads() {
       const image = new Image()
       image.src = 'img/nebula.jpg'
@@ -47,14 +54,9 @@
       document.body.appendChild(image)
     }
     function decodes() {
-      const image = new Image()
-      image.src = 'img/nebula.jpg'
-      removes()
-      image.onload = () => {
-        image.decode().then(() => {
-          document.body.appendChild(image)
-        })
-      }
+      decodeImage.then(() => {
+         document.body.appendChild(image)
+      })
     }
   </script>
 </body>
